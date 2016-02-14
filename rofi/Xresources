@@ -1,59 +1,27 @@
 ! Enabled modi
 rofi.modi:                           window,run,ssh
 ! Window opacity
-rofi.opacity:                        100
+rofi.opacity:                        95
 ! Window width
-rofi.width:                          50
+rofi.width:                          100
 ! Number of lines
 rofi.lines:                          15
 ! Number of columns
 rofi.columns:                        1
 ! Font to use
 rofi.font:                           mono 12
-! Foreground color
-rofi.fg:                             #002B36
-! Background color
-rofi.bg:                             #FDF6E3
-! Foreground color for active row
-rofi.fg-active:                      #268BD2
-! Foreground color for urgent row
-rofi.fg-urgent:                      #DC322F
-! Foreground color for highlighted active row
-rofi.hlfg-active:                    #FDF6E3
-! Foreground color for highlighted urgent row
-rofi.hlfg-urgent:                    #FDF6E3
-! Background color for active row
-rofi.bg-active:                      #FDF6E3
-! Background color for urgent row
-rofi.bg-urgent:                      #FDF6E3
-! Background color for highlighted active row
-rofi.hlbg-active:                    #268BD2
-! Background color for highlighted urgent row
-rofi.hlbg-urgent:                    #DC322F
-! Background color for alternating row
-rofi.bgalt:                          #FDF6E3
-! Foreground color for highlighted row
-rofi.hlfg:                           #EEE8D5
-! Background color for highlighted row
-rofi.hlbg:                           #586E75
-! Border color
-rofi.bc:                             #002B36
-! Use extended color scheme
-rofi.color-enabled:                  false
-! Color scheme for normal row
-rofi.color-normal:                   #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5
-! Color scheme for urgent row
-rofi.color-urgent:                   #fdf6e3,#dc322f,#eee8d5,#dc322f,#fdf6e3
-! Color scheme for active row
-rofi.color-active:                   #fdf6e3,#268bd2,#eee8d5,#268bd2,#fdf6e3
-! Color scheme window
-rofi.color-window:                   #fdf6e3,#002b36
+! Rofi solarized
+rofi.color-enabled: true
+rofi.color-window: #002b37, #002b37, #003642
+rofi.color-normal: #002b37, #819396, #002b37, #003642, #819396
+rofi.color-active: #002b37, #008ed4, #002b37, #003642, #008ed4
+rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
 ! Border width
 rofi.bw:                             1
 ! Location on screen
 rofi.location:                       0
 ! Padding
-rofi.padding:                        5
+rofi.padding:                        480 
 ! Y-offset relative to location
 rofi.yoffset:                        0
 ! X-offset relative to location
@@ -109,7 +77,7 @@ rofi.filter:
 ! Separator style (none, dash, solid)
 rofi.separator-style:                dash
 ! Hide scroll-bar
-rofi.hide-scrollbar:                 false
+rofi.hide-scrollbar:                 true
 ! Show markup
 rofi.markup-rows:                    false
 ! Fullscreen
