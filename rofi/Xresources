@@ -9,7 +9,7 @@ rofi.lines:                          15
 ! Number of columns
 rofi.columns:                        1
 ! Font to use
-rofi.font:                           mono 12
+rofi.font:                           Source Code Pro Regular 12
 ! Rofi solarized
 rofi.color-enabled: true
 rofi.color-window: #002b37, #002b37, #003642
