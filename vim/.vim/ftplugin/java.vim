@@ -1,4 +1,1 @@
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set number
+setlocal tabstop=4 softtabstop=4 shiftwidth=4

@@ -10,41 +10,70 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" navigation plugins
-Bundle 'scrooloose/nerdtree'
+" color schemes
+Plugin 'flazz/vim-colorschemes'
 
-Bundle 'wincent/command-t'
+" javascript
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
 
-Plugin 'christoomey/vim-tmux-navigator'
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 
-Plugin 'easymotion/vim-easymotion'
+" Dash documentation manager
+Plugin 'rizzatti/dash.vim'
 
-" color/style
-Bundle 'altercation/vim-colors-solarized'
+" tmux vim integration
+Bundle 'christoomey/vim-tmux-navigator'
 
-" debugging support
+" file/navigation
+Plugin 'wincent/command-t'
+
+" word navigation
+Plugin 'Lokaltog/vim-easymotion'
+
+" python auto-completion and stuff
+Bundle 'klen/python-mode'
+
+" python autocomplete
+Bundle 'davidhalter/jedi-vim'
+
+" php syntax highlighting
+Plugin '2072/vim-syntax-for-PHP.git'
+
+" php indenting
+Plugin '2072/PHP-Indenting-for-VIm'
+
+" helps with php autocomplete
+" Bundle 'ervandew/supertab'
+
+" php autocompletion
+" Bundle 'shawncplus/phpcomplete.vim'
+
+" dbgp integration
 Bundle 'joonty/vdebug.git'
 
-" Python
-Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
-" End Python
-
-" autocomplete
-Plugin 'Valloric/YouCompleteMe'
-
-" ctag integration
+" tags
 Plugin 'majutsushi/tagbar'
 
-" golang
-Plugin 'fatih/vim-go'
-" end golang
-
-" Git support
+" git integration
 Plugin 'tpope/vim-fugitive'
 
-" Elixir support
+" SASS syntax
+Plugin 'cakebaker/scss-syntax.vim'
+
+" auto-completion
+Plugin 'Valloric/YouCompleteMe'
+
+" golang support
+Plugin 'fatih/vim-go'
+
+" elixir support
 Plugin 'elixir-lang/vim-elixir'
+
+" ag support
+Plugin 'rking/ag.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -62,55 +91,109 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " Put swap files and undo in a central location
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
+set undodir=~/.vim/undo
 
-" Pane navigation
+" Set basic color support and scheme
+" set t_Co=256
+syntax on
+" set background=light
+set background=dark
+colorscheme solarized
+let g:solarized_termcolors = 256
+
+" Make the clipboard work
+set clipboard=unnamed
+
+" Set basic programming settings
+set expandtab
+set number
+set mouse=a
+set backspace=2
+
+" Fix the difficult-to-read default setting for diff text highlighting.  The
+" bang (!) is required since we are overwriting the DiffText setting. The
+" highlighting
+" for "Todo" also looks nice (yellow) if you don't like the "MatchParen"
+" colors.
+highlight! link DiffText MatchParen
+
+" ignore whitespace in vimdiff
+if &diff
+    set diffopt+=iwhite
+endif
+
+" Start NERDTree by default
+" autocmd VimEnter * NERDTree
+
+" Command-T settings
+let g:CommandTTraverseSCM='pwd'
+let g:CommandTMaxDepth=30
+let g:CommandTFileScanner='ruby'
+let g:CommandTWildIgnore='.git,**/node_modules,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot,**/venv,**/virtualenvs,**/*.egg-info'
+let g:CommandTAcceptSelectionSplitCommand='sp'
+let g:CommandTAcceptSelectionSplitMap='<C-g>'
+
+" Treat .json files as javascript for highlighting.
+autocmd BufNewFile,BufRead *.json set ft=javascript
+" .sh is bash scripts
+autocmd BufNewFile,BufRead *.sh set ft=sh
+" .make is a Makefile
+autocmd BufNewFile,BufRead *.make set ft=make
+autocmd FileType make setlocal noexpandtab
+
+" Mapping for pane navigation
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" Style Settings
-set t_Co=256
-syntax enable
-set background=dark
-colorscheme solarized
+" configuration for easy motion
+let g:EasyMotion_do_mapping = 0
 
-" Command-T Settings
-let g:CommandTMaxDepth=30
-let g:CommandTFileScanner='ruby'
-let g:CommandTWildIgnore='.git,**/node_modules,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot'
-let g:CommandTAcceptSelectionSplitCommand='sp'
-let g:CommandTAcceptSelectionSplitMap='<C-g>'
-
-" EasyMotion Bindings
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Bi-directional find motion
-" " Jump to anywhere you want with minimal keystrokes, with just one key
-" binding.
-" `s{char}{label}`
-" nmap s <Plug>(easymotion-s)
-" or
-" " `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
 nmap s <Plug>(easymotion-s2)
-"
-" HJKL motions: Line motions
+let g:EasyMotion_smartcase = 1
+
 map <Leader>h <Plug>(easymotion-linebackward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-lineforward)
 
-" keep cursor column when JK motion
-let g:EasyMotion_startofline = 0
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
+" Functions to move windows around
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
 
-" enable tagbar window
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf 
+endfunction
+
+nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
 nmap <F8> :TagbarToggle<CR>
 
-" Clipboard shared with system.
-set clipboard^=unnamedplus
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
+
+" set wildignore=
+let g:CommandTWildIgnore=&wildignore . ",*.o,*.obj,.git,*.class,*.jar,node_modules/**,bower_components/**,**/node_modules/**,_build/**,deps/**,**/vendor/**,**/dist/**"
+
+" ag.vim configuration
+let g:ag_working_path_mode="r"
+
+" Default tabstops
+setlocal tabstop=4 softtabstop=4 shiftwidth=4
