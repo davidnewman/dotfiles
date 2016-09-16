@@ -10,41 +10,48 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" navigation plugins
-Bundle 'scrooloose/nerdtree'
+" color/style
+Bundle 'altercation/vim-colors-solarized'
 
-Bundle 'wincent/command-t'
+" navigation plugins
+" Bundle 'scrooloose/nerdtree'
+
+" Bundle 'wincent/command-t'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'easymotion/vim-easymotion'
 
-" color/style
-Bundle 'altercation/vim-colors-solarized'
-
 " debugging support
-Bundle 'joonty/vdebug.git'
+" Bundle 'joonty/vdebug.git'
 
 " Python
-Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
+" Bundle 'klen/python-mode'
+" Bundle 'davidhalter/jedi-vim'
 " End Python
 
 " autocomplete
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 
 " ctag integration
-Plugin 'majutsushi/tagbar'
+" Plugin 'majutsushi/tagbar'
 
 " golang
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 " end golang
 
 " Git support
 Plugin 'tpope/vim-fugitive'
 
 " Elixir support
-Plugin 'elixir-lang/vim-elixir'
+" Plugin 'elixir-lang/vim-elixir'
+
+" Search integration
+" Plugin 'rking/ag.vim'
+
+" lldb support
+" Plugin 'gilligan/vim-lldb'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -73,17 +80,18 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Style Settings
-set t_Co=256
+" set t_Co=256
 syntax enable
 set background=dark
+" set background=light
 colorscheme solarized
 
 " Command-T Settings
-let g:CommandTMaxDepth=30
-let g:CommandTFileScanner='ruby'
-let g:CommandTWildIgnore='.git,**/node_modules,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot'
-let g:CommandTAcceptSelectionSplitCommand='sp'
-let g:CommandTAcceptSelectionSplitMap='<C-g>'
+" let g:CommandTMaxDepth=30
+" let g:CommandTFileScanner='ruby'
+" let g:CommandTWildIgnore='.git,**/node_modules,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot,*.out,*.gch'
+" let g:CommandTAcceptSelectionSplitCommand='sp'
+" let g:CommandTAcceptSelectionSplitMap='<C-g>'
 
 " EasyMotion Bindings
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -92,11 +100,11 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " " Jump to anywhere you want with minimal keystrokes, with just one key
 " binding.
 " `s{char}{label}`
-" nmap s <Plug>(easymotion-s)
+nmap s <Plug>(easymotion-s)
 " or
 " " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-s2)
+" nmap s <Plug>(easymotion-s2)
 "
 " HJKL motions: Line motions
 map <Leader>h <Plug>(easymotion-linebackward)
@@ -110,7 +118,10 @@ let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
 
 " enable tagbar window
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
 
 " Clipboard shared with system.
 set clipboard^=unnamedplus
+
+" ag.vim
+" let g:ag_working_path_mode="r"
