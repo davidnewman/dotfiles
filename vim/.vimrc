@@ -1,3 +1,7 @@
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -16,7 +20,7 @@ Bundle 'altercation/vim-colors-solarized'
 " navigation plugins
 " Bundle 'scrooloose/nerdtree'
 
-" Bundle 'wincent/command-t'
+Bundle 'wincent/command-t'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
@@ -31,7 +35,7 @@ Plugin 'easymotion/vim-easymotion'
 " End Python
 
 " autocomplete
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 " ctag integration
 " Plugin 'majutsushi/tagbar'
@@ -45,13 +49,13 @@ Plugin 'tpope/vim-fugitive'
 
 " Elixir support
 " Plugin 'elixir-lang/vim-elixir'
+" Plugin 'slashmili/alchemist.vim'
 
 " Search integration
 " Plugin 'rking/ag.vim'
 
 " lldb support
 " Plugin 'gilligan/vim-lldb'
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -87,11 +91,11 @@ set background=dark
 colorscheme solarized
 
 " Command-T Settings
-" let g:CommandTMaxDepth=30
-" let g:CommandTFileScanner='ruby'
-" let g:CommandTWildIgnore='.git,**/node_modules,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot,*.out,*.gch'
-" let g:CommandTAcceptSelectionSplitCommand='sp'
-" let g:CommandTAcceptSelectionSplitMap='<C-g>'
+let g:CommandTMaxDepth=30
+let g:CommandTFileScanner='ruby'
+let g:CommandTWildIgnore='.git,**/node_modules/**,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot,*.out,*.gch,node_modules/**,bower_components/**,_build/**,build/**,deps/**'
+let g:CommandTAcceptSelectionSplitCommand='sp'
+let g:CommandTAcceptSelectionSplitMap='<C-g>'
 
 " EasyMotion Bindings
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -124,4 +128,4 @@ let g:EasyMotion_smartcase = 1
 set clipboard^=unnamedplus
 
 " ag.vim
-" let g:ag_working_path_mode="r"
+let g:ag_working_path_mode="r"

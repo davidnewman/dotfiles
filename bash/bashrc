@@ -6,6 +6,11 @@ eval `dircolors ~/.dir_colors`
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+source /usr/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
+
 alias ls='ls --color=auto'
 
 BOLD=$(tput bold)
@@ -34,3 +39,6 @@ source ~/.git-prompt.sh
 PS1='[\[\e[0;31m\]\w\[\e[0m\]]$(__git_ps1 "[\[\e[0;32m\]%s\[\e[0m\]] ")> '
 # Default for bash
 # PS1='[\u@\h \W]\$ '
+
+export GOPATH=$HOME/work
+export PATH="$PATH:/home/den/.gem/ruby/2.3.0/bin"

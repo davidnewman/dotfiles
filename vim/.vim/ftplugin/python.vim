@@ -46,6 +46,6 @@ let g:pymode_lint_options_pep8 =
     \ {'max_line_length': g:pymode_options_max_line_length}
 
 " Vdebug settings
-let g:vdebug_options['on_close'] = 'kill'
-let g:vdebug_options['timeout'] = 60
+" let g:vdebug_options['on_close'] = 'kill'
+" let g:vdebug_options['timeout'] = 60
 
