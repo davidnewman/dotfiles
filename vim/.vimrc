@@ -23,7 +23,8 @@ Bundle 'scrooloose/nerdtree'
 " Bundle 'wincent/command-t'
 Plugin 'ctrlpvim/ctrlp.vim'
 
-Plugin 'christoomey/vim-tmux-navigator'
+" TMUX
+" Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'easymotion/vim-easymotion'
 
@@ -39,11 +40,11 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 
 " ctag integration
-Plugin 'majutsushi/tagbar'
+" Plugin 'majutsushi/tagbar'
 
 " golang
-Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" Plugin 'fatih/vim-go'
+" Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " end golang
 
 " Git support
@@ -53,18 +54,18 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'elixir-lang/vim-elixir'
 " Plugin 'slashmili/alchemist.vim'
 
-" Search integration
-Plugin 'rking/ag.vim'
+" Search integration (requires installation of "silversearcher" https://github.com/ggreer/the_silver_searcher
+" Plugin 'rking/ag.vim'
 
 " Hashicopr tools
-Plugin 'hashivim/vim-terraform'
+" Plugin 'hashivim/vim-terraform'
 " lldb support
 " Plugin 'gilligan/vim-lldb'
 
 " PHP
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'davidnewman/vim-easytags'
+" Plugin 'shawncplus/phpcomplete.vim'
+" Plugin 'xolox/vim-misc'
+" Plugin 'davidnewman/vim-easytags'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -98,13 +99,6 @@ syntax enable
 set background=dark
 " set background=light
 colorscheme solarized
-
-" Command-T Settings
-" let g:CommandTMaxDepth=30
-" let g:CommandTFileScanner='ruby'
-" let g:CommandTWildIgnore='.git,**/node_modules/**,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot,*.out,*.gch,node_modules/**,bower_components/**,_build/**,build/**,deps/**'
-" let g:CommandTAcceptSelectionSplitCommand='sp'
-" let g:CommandTAcceptSelectionSplitMap='<C-g>'
 
 " CtrlP Settings
 let g:ctrlp_map = '<Leader>t'
@@ -146,7 +140,7 @@ let g:EasyMotion_smartcase = 1
 set clipboard=unnamedplus
 
 " ag.vim
-let g:ag_working_path_mode="r"
+" let g:ag_working_path_mode="r"
 
 " quickfix window shortcuts
 map <C-n> :cnext<CR>
@@ -154,6 +148,6 @@ map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 
 " Autocompletion options
-let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
 
 set tabstop=4 softtabstop=4 shiftwidth=4
