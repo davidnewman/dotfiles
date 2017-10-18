@@ -18,9 +18,10 @@ Plugin 'gmarik/Vundle.vim'
 Bundle 'altercation/vim-colors-solarized'
 
 " navigation plugins
-" Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdtree'
 
-Bundle 'wincent/command-t'
+" Bundle 'wincent/command-t'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
@@ -38,10 +39,11 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 
 " ctag integration
-" Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 
 " golang
-" Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " end golang
 
 " Git support
@@ -52,10 +54,17 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'slashmili/alchemist.vim'
 
 " Search integration
-" Plugin 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 
+" Hashicopr tools
+Plugin 'hashivim/vim-terraform'
 " lldb support
 " Plugin 'gilligan/vim-lldb'
+
+" PHP
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'davidnewman/vim-easytags'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -91,11 +100,20 @@ set background=dark
 colorscheme solarized
 
 " Command-T Settings
-let g:CommandTMaxDepth=30
-let g:CommandTFileScanner='ruby'
-let g:CommandTWildIgnore='.git,**/node_modules/**,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot,*.out,*.gch,node_modules/**,bower_components/**,_build/**,build/**,deps/**'
-let g:CommandTAcceptSelectionSplitCommand='sp'
-let g:CommandTAcceptSelectionSplitMap='<C-g>'
+" let g:CommandTMaxDepth=30
+" let g:CommandTFileScanner='ruby'
+" let g:CommandTWildIgnore='.git,**/node_modules/**,**/bin,*.png,*.jpg,*.jpeg,*.gif,*.o,*.obj,*.pyo,*.pyc,*.ttf,*.otf,*.woff,*.eot,*.out,*.gch,node_modules/**,bower_components/**,_build/**,build/**,deps/**'
+" let g:CommandTAcceptSelectionSplitCommand='sp'
+" let g:CommandTAcceptSelectionSplitMap='<C-g>'
+
+" CtrlP Settings
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/]\.(git|hg|svn)$|[\/](node_modules|bin|automated_tests\/_output)$',
+  \ 'file': '\v\.(png|jpg|jpeg|gif|obj|o|pyo|pyc|ttf|otf|woff|eot|out|gch)$'
+  \ }
 
 " EasyMotion Bindings
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -104,11 +122,11 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " " Jump to anywhere you want with minimal keystrokes, with just one key
 " binding.
 " `s{char}{label}`
-nmap s <Plug>(easymotion-s)
+" nmap s <Plug>(easymotion-s)
 " or
 " " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-" nmap s <Plug>(easymotion-s2)
+nmap s <Plug>(easymotion-s2)
 "
 " HJKL motions: Line motions
 map <Leader>h <Plug>(easymotion-linebackward)
@@ -117,7 +135,7 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-lineforward)
 
 " keep cursor column when JK motion
-let g:EasyMotion_startofline = 0
+" let g:EasyMotion_startofline = 0
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 
@@ -125,7 +143,17 @@ let g:EasyMotion_smartcase = 1
 " nmap <F8> :TagbarToggle<CR>
 
 " Clipboard shared with system.
-set clipboard^=unnamedplus
+set clipboard=unnamedplus
 
 " ag.vim
 let g:ag_working_path_mode="r"
+
+" quickfix window shortcuts
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+" Autocompletion options
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+set tabstop=4 softtabstop=4 shiftwidth=4
